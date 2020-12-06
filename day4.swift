@@ -1,12 +1,13 @@
 import Foundation 
-let array = readInput(path: "day4-input.txt")
+let array = readInput(day: 4)
 let requiredFields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
 
 printValidPassportCount(part: "first", validator: part1Validator)
 printValidPassportCount(part: "second", validator: part2Validator)
 
 
-func readInput(path: String) -> [String]{
+func readInput(day: Int) -> [String]{
+    let path = "inputs/day\(day)-input.txt"
     let content = try! String(contentsOfFile:path)
     return content.components(separatedBy: CharacterSet.newlines)
 }

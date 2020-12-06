@@ -2,19 +2,14 @@ import Foundation
 
 let goal = 2020
 
-let array = readInput(path: "day1-input.txt")
+let array = readInput(day: 1).map { Int($0)! }
 findPart1()
 findPart2()
 
-func readInput(path: String) -> [Int]{
+func readInput(day: Int) -> [String]{
+    let path = "inputs/day\(day)-input.txt"
     let content = try! String(contentsOfFile:path)
-    let scanner = Scanner(string: content)
-    var array = [Int]()
-    var value = 0
-    while scanner.scanInt(&value) {
-        array.append(value)
-    }
-    return array
+    return content.components(separatedBy: CharacterSet.newlines)
 }
 
 func findPart1() {

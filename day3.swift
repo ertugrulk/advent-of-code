@@ -1,6 +1,6 @@
 import Foundation 
 
-var array = readInput(path: "day3-input.txt")
+var array = readInput(day: 3)
 
 struct Slope{
     let x: Int
@@ -11,7 +11,8 @@ struct Slope{
     }
 } 
 
-func readInput(path: String) -> [String]{
+func readInput(day: Int) -> [String]{
+    let path = "inputs/day\(day)-input.txt"
     let content = try! String(contentsOfFile:path)
     return content.components(separatedBy: CharacterSet.newlines)
 }

@@ -1,6 +1,6 @@
 import Foundation
 
-let array = readInput(path: "day2-input.txt")
+let array = readInput(day: 2)
 validatePasswords(part: "first", validator: part1Validator)
 validatePasswords(part: "second", validator: part2Validator)
 
@@ -13,7 +13,8 @@ struct passwordEntry{
 }
 
 
-func readInput(path: String) -> [String]{
+func readInput(day: Int) -> [String]{
+    let path = "inputs/day\(day)-input.txt"
     let content = try! String(contentsOfFile:path)
     return content.components(separatedBy: CharacterSet.newlines)
 }

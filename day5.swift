@@ -1,6 +1,6 @@
 import Foundation
 
-let seats = readInput(path: "day5-input.txt").map { Seat(data: $0) }
+let seats = readInput(day: 5).map { Seat(data: $0) }
 part1()
 part2()
 
@@ -23,7 +23,8 @@ func part2() {
 }
 
 
-func readInput(path: String) -> [String]{
+func readInput(day: Int) -> [String]{
+    let path = "inputs/day\(day)-input.txt"
     let content = try! String(contentsOfFile:path)
     return content.components(separatedBy: CharacterSet.newlines)
 }
