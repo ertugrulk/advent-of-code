@@ -3,6 +3,7 @@ import Foundation
 var lines = readInput(day: 3).map { $0.components(separatedBy: ",") }
 
 part1()
+part2()
 
 func part1() {
     let centralPort = Point(0, 0)
@@ -14,6 +15,18 @@ func part1() {
     print ("The shortest distance between the central port and the first crossing is \(shortestDistance)")
 }
 
+func part2() {
+    let centralPort = Point(0, 0)
+    let line1 = generateGrid(from: centralPort, paths: lines[0])
+    let line2 = generateGrid(from: centralPort, paths: lines[1])
+    let intersections = line1.intersection(line2)
+    let distances = intersections.map { intersection in
+        (line1.first{ $0 == intersection}!.steps + line2.first{ $0 == intersection}!.steps)
+    }
+    let shortestDistance = distances.min()!
+    print ("The fewest combined steps between central port and the first crossing is \(shortestDistance)")
+}
+
 func generateGrid(from: Point, paths: [String]) -> Set<Point> {
     var pos = from
     var grid: [Point] = []
@@ -21,6 +34,7 @@ func generateGrid(from: Point, paths: [String]) -> Set<Point> {
         let direction = String(path.first!)
         let length = Int(path[path.index(after: path.startIndex)...])!
         for _ in 1...length {
+            pos.steps += 1
             switch(direction) {
                 case "U":
                     pos.y += 1
@@ -42,12 +56,14 @@ func generateGrid(from: Point, paths: [String]) -> Set<Point> {
 struct Point{
     var x: Int
     var y: Int
+    var steps: Int
 }
 
 extension Point {
-    init(_ x: Int, _ y: Int){
+    init(_ x: Int, _ y: Int, _ steps: Int = 0){
         self.x = x
         self.y = y
+        self.steps = steps
     }
 
     func measureDistance(to: Point) -> Int {
