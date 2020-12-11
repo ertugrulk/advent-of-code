@@ -16,7 +16,7 @@ func part1() {
             diffByThree += 1
         }
     }
-    print("1: \(diffByOne), 3: \(diffByThree)")
+    print("1 jolt differences (\(diffByOne)) multiplied by 3 jolt differences (\(diffByThree)) is \(diffByOne * diffByThree)")
 }
 
 
